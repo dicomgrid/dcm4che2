@@ -51,6 +51,7 @@ import javax.imageio.IIOImage;
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
 import javax.imageio.ImageWriter;
+import javax.imageio.spi.IIORegistry;
 import javax.imageio.spi.ImageReaderSpi;
 import javax.imageio.stream.FileImageInputStream;
 import javax.imageio.stream.FileImageOutputStream;
@@ -81,6 +82,8 @@ import org.dcm4che2.io.StopTagInputHandler;
 import org.dcm4che2.io.TranscoderInputHandler;
 import org.dcm4che2.media.FileMetaInformation;
 import org.dcm4che2.util.CloseUtils;
+
+import com.dicomgrid.commons.utils.fragmentedJpeg.CLibFragmentedJPEGImageReaderSpi;
 
 /**
  * @author Gunter Zeilinger <gunterze@gmail.com>
@@ -208,6 +211,8 @@ public class Dcm2Dcm {
     	
     	System.setProperty("org.dcm4che2.imageio.ImageReaderFactory", "com/dicomgrid/imageio/ImageReaderFactory.properties");
         System.setProperty("org.dcm4che2.imageio.ImageWriterFactory", "com/dicomgrid/imageio/ImageWriterFactory.properties");
+        
+        IIORegistry.getDefaultInstance().registerServiceProvider(new CLibFragmentedJPEGImageReaderSpi(), ImageReaderSpi.class);
         
         CommandLine cl = parse(args);
         Dcm2Dcm dcm2dcm = new Dcm2Dcm();
