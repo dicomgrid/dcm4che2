@@ -188,15 +188,15 @@ public abstract class LookupTable {
             throw new IllegalArgumentException("src.height:" + srcHeight
                     + " != dst.height:" + dstHeight);
         }
-        if (srcHeight * srcScanlineStride != srcdata.getSize()) {
+        if (srcHeight * srcScanlineStride > srcdata.getSize()) {
             throw new IllegalArgumentException("srcHeight:" + srcHeight
                     + " * srcScanlineStride:" + srcScanlineStride
-                    + " != src.length:" + srcdata.getSize());
+                    + " > src.length:" + srcdata.getSize());
         }
-        if (srcHeight * dstScanlineStride != dstdata.getSize()) {
+        if (srcHeight * dstScanlineStride > dstdata.getSize()) {
             throw new IllegalArgumentException("srcHeight:" + srcHeight
                     + " * dstScanlineStride:" + dstScanlineStride
-                    + " != dst.length:" + dstdata.getSize());
+                    + " > dst.length:" + dstdata.getSize());
         }
         switch (dstdata.getDataType()) {
         case DataBuffer.TYPE_BYTE:
