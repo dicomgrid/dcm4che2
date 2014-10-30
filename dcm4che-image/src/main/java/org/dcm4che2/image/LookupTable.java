@@ -670,7 +670,7 @@ public abstract class LookupTable {
         
         Integer[] minMaxPixelPadding = getMinMaxPixelPadding(pixelPaddingValue, pixelPaddingRange);
         
-        if (data.length == len) {
+        if (data.length == len || data.length == len + 1) {
             if (pixelPaddingValue != null) {
                 int t = (minMaxPixelPadding[1] - off) -  len;
                 if ( t > 0) {
