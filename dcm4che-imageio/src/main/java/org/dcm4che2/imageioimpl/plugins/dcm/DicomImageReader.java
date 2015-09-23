@@ -89,8 +89,8 @@ import org.dcm4che2.util.ByteUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.sun.media.imageio.stream.RawImageInputStream;
-import com.sun.media.imageio.stream.SegmentedImageInputStream;
+import com.github.jaiimageio.stream.RawImageInputStream;
+import com.github.jaiimageio.stream.SegmentedImageInputStream;
 
 /**
  * @author Gunter Zeilinger <gunterze@gmail.com>

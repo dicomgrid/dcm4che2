@@ -53,9 +53,9 @@ import org.dcm4che2.util.TagUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.sun.media.imageio.stream.SegmentedImageInputStream;
-import com.sun.media.imageio.stream.StreamSegment;
-import com.sun.media.imageio.stream.StreamSegmentMapper;
+import com.github.jaiimageio.stream.SegmentedImageInputStream;
+import com.github.jaiimageio.stream.StreamSegment;
+import com.github.jaiimageio.stream.StreamSegmentMapper;
 
 /**
  * @author Gunter Zeilinger <gunterze@gmail.com>
