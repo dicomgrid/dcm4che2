@@ -628,7 +628,7 @@ public class DcmOF {
         }
     }
 
-    private void setIndent(boolean b) {
+    public void setIndent(boolean b) {
         this.indent = b;
         
     }
@@ -641,7 +641,7 @@ public class DcmOF {
         this.tsuids = tsuids;
     }
 
-    private void registerMWLSCP(File dir, ArrayList<TransferCapability> tc) {
+    public void registerMWLSCP(File dir, ArrayList<TransferCapability> tc) {
         MWLSCP mwlscp = new MWLSCP(executor, this);
         mwlscp.setSource(dir);
         ae.register(mwlscp);
@@ -696,7 +696,7 @@ public class DcmOF {
                 TransferCapability.SCP));
     }
 
-    private void setTransferCapability(TransferCapability[] tc) {
+    public void setTransferCapability(TransferCapability[] tc) {
         ae.setTransferCapability(tc);
     }
 

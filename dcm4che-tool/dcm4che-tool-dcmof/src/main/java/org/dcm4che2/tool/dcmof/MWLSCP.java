@@ -40,9 +40,11 @@ package org.dcm4che2.tool.dcmof;
 
 import java.io.File;
 import java.util.concurrent.Executor;
-
+import org.dcm4che2.data.DicomElement;
 import org.dcm4che2.data.DicomObject;
+import org.dcm4che2.data.Tag;
 import org.dcm4che2.data.UID;
+import org.dcm4che2.data.VR;
 import org.dcm4che2.net.Association;
 import org.dcm4che2.net.DicomServiceException;
 import org.dcm4che2.net.DimseRSP;
@@ -73,6 +75,15 @@ class MWLSCP extends CFindService {
     @Override
     protected DimseRSP doCFind(Association as, int pcid, DicomObject cmd,
             DicomObject keys, DicomObject rsp) throws DicomServiceException {
+        String calledAET = as.getCalledAET();
+        if (calledAET != null && !calledAET.equals("ANY-SCP")) {
+            DicomElement dicomElement = keys.get(Tag.ScheduledProcedureStepSequence);
+            DicomObject dicomObject = dicomElement.getDicomObject(0);
+            dicomObject.remove(Tag.ScheduledStationAETitle);
+            dicomObject.putString(Tag.ScheduledStationAETitle, VR.AE, calledAET);
+            dicomElement.removeDicomObject(0);
+            dicomElement.addDicomObject(0, dicomObject);
+        }
         return new MultiFindRSP(dcmOF, keys, rsp, source);
     }
 }
