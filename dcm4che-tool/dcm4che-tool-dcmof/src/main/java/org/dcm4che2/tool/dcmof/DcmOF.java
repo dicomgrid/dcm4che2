@@ -79,6 +79,7 @@ import org.dcm4che2.net.NetworkApplicationEntity;
 import org.dcm4che2.net.NetworkConnection;
 import org.dcm4che2.net.NewThreadExecutor;
 import org.dcm4che2.net.TransferCapability;
+import org.dcm4che2.net.service.DicomService;
 import org.dcm4che2.net.service.VerificationService;
 import org.dcm4che2.util.CloseUtils;
 import org.slf4j.Logger;
@@ -646,6 +647,12 @@ public class DcmOF {
         mwlscp.setSource(dir);
         ae.register(mwlscp);
         tc.add(new TransferCapability(mwlscp.getSopClass(), tsuids,
+                TransferCapability.SCP));
+    }
+
+    public void registerMWLSCP(DicomService dicomService, ArrayList<TransferCapability> tc) {
+        ae.register(dicomService);
+        tc.add(new TransferCapability(dicomService.getSopClass(), tsuids,
                 TransferCapability.SCP));
     }
 

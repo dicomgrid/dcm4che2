@@ -75,15 +75,6 @@ class MWLSCP extends CFindService {
     @Override
     protected DimseRSP doCFind(Association as, int pcid, DicomObject cmd,
             DicomObject keys, DicomObject rsp) throws DicomServiceException {
-        String callingAET = as.getCallingAET();
-        if (callingAET != null && !callingAET.equals("FINDSCU")) {
-            DicomElement dicomElement = keys.get(Tag.ScheduledProcedureStepSequence);
-            DicomObject dicomObject = dicomElement.getDicomObject(0);
-            dicomObject.remove(Tag.ScheduledStationAETitle);
-            dicomObject.putString(Tag.ScheduledStationAETitle, VR.AE, calledAET);
-            dicomElement.removeDicomObject(0);
-            dicomElement.addDicomObject(0, dicomObject);
-        }
         return new MultiFindRSP(dcmOF, keys, rsp, source);
     }
 }
