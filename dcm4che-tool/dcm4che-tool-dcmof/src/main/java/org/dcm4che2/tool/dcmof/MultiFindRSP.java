@@ -53,7 +53,7 @@ import org.dcm4che2.net.Status;
  * @since Mar 11, 2006
  *
  */
-class MultiFindRSP implements DimseRSP {
+public class MultiFindRSP implements DimseRSP {
 
     private final DcmOF dcmOF;
     private File[] files;

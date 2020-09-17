@@ -57,7 +57,7 @@ import org.dcm4che2.net.service.CFindService;
  * @since Feb 2, 2006
  * 
  */
-class MWLSCP extends CFindService {
+public class MWLSCP extends CFindService {
     protected final DcmOF dcmOF;
     protected File source;
 
